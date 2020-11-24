@@ -1,0 +1,1 @@
+UPDATE `sewadars` set sewadar_name = 'Smt. Saroj H Patel.', short_name = 'SHP', type = 'SK'WHERE  id=181
