@@ -110,7 +110,17 @@ include 'dbcontroller.php';
 			}
 			$com_name = $db_short.$sewadar_name;
 			if (strcmp($sewadar_name, "CD") != 0) {
-				$count = $db_handle->numRows("SELECT * FROM `".$master."` WHERE ".$db." = '".$com_name."' AND date = '".$formatted_date."'");
+				$sewa_list = $db_handle->runQuery("SELECT * FROM `".$master."` WHERE ".$db." = '".$com_name."' AND date = '".$formatted_date."'");
+				$count = 0;
+				foreach ($sewa_list as $alloted_sewa) {
+					$alloted_centre = $alloted_sewa["centre_name"];
+					$count++;
+					if(strpos($centre_name, "Evening") !== false && strpos($alloted_centre, "Evening") !== false) {
+						break;
+					} else if(strpos($centre_name, "Evening") !== false || strpos($alloted_centre, "Evening") !== false) {
+						$count--;
+					} 
+				} 
 			}
 			if($count > 0){
 				$sk_result = $db_handle->runQuery("SELECT * FROM `".$master."` WHERE centre_name = '".$centre_name."' AND date = '".$formatted_date."'");
@@ -129,7 +139,17 @@ include 'dbcontroller.php';
 			$db ="pathi";
 			if (strcmp(TRIM($sewadar_name), '') != 0) {
 				$db_short = "PA: ";
-				$count = $db_handle->numRows("SELECT * FROM `".$master."` WHERE (`pathi` = 'PA: ".$sewadar_name."' OR `ground` = 'SS: ".$sewadar_name."') AND (date = '".$formatted_date."')");
+				$sewa_list = $db_handle->runQuery("SELECT * FROM `".$master."` WHERE (`pathi` = 'PA: ".$sewadar_name."' OR `ground` = 'SS: ".$sewadar_name."') AND (date = '".$formatted_date."')");
+				$count = 0;
+				foreach ($sewa_list as $alloted_sewa) {
+					$alloted_centre = $alloted_sewa["centre_name"];
+					$count++;
+					if(strpos($centre_name, "Evening") !== false && strpos($alloted_centre, "Evening") !== false) {
+						break;
+					} else if(strpos($centre_name, "Evening") !== false || strpos($alloted_centre, "Evening") !== false) {
+						$count--;
+					} 
+				} 
 			} else {
 				$count = 0;
 			}
@@ -137,7 +157,17 @@ include 'dbcontroller.php';
 		elseif (strcmp($sewadar_type, "Ground Pathi") == 0) {
 			$db ="ground";
 			$db_short = "SS: ";
-			$count = $db_handle->numRows("SELECT * FROM `".$master."` WHERE (`pathi` = 'PA: ".$sewadar_name."' OR `ground` = 'SS: ".$sewadar_name."') AND (date = '".$formatted_date."')");
+			$sewa_list = $db_handle->runQuery("SELECT * FROM `".$master."` WHERE (`pathi` = 'PA: ".$sewadar_name."' OR `ground` = 'SS: ".$sewadar_name."') AND (date = '".$formatted_date."')");
+			$count = 0;
+			foreach ($sewa_list as $alloted_sewa) {
+				$alloted_centre = $alloted_sewa["centre_name"];
+				$count++;
+				if(strpos($centre_name, "Evening") !== false && strpos($alloted_centre, "Evening") !== false) {
+					break;
+				} else if(strpos($centre_name, "Evening") !== false || strpos($alloted_centre, "Evening") !== false) {
+					$count--;
+				} 
+			} 
 		}
 		elseif (strcmp($sewadar_type, "Baani") == 0) {
 			$db ="baani";
