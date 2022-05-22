@@ -2,7 +2,7 @@
 include 'commonhead.php';
 include 'dbcontroller.php';
 
-	if (isset($_GET['master']) && isset($_GET['master'])) {
+	if (isset($_GET['master']) && !empty($_GET['master'])) {
 		$i = $_GET['row'];
 		$j = $_GET['col'];
 		$row = '40'.$i;
@@ -130,8 +130,15 @@ if(isset($_POST['sewadar_name'])&&!empty($_POST['sewadar_name'])){
 	$date2 = $_POST['date2'];
 	$date3 = $_POST['date3'];
 
+	$leave_count = 0;
+	$sewa_date_list = array($date1, $date2, $date3)
+	foreach($sewa_date_list as $sewa_date) {
+		$leave_count += checkSewadarAvailability($db_handle, $sewa_date, $sewadar_name, $leave_count);
+	}
+
 	if(isset($pathi_name1) && !empty($pathi_name1)) {
 		$pathi1 = "PA: ".$pathi_name1;
+		$leave_count += checkSewadarAvailability($db_handle, $sewa_date, $pathi_name1, $leave_count);
 	}
 	else{
 		$pathi1 = '';
@@ -143,6 +150,7 @@ if(isset($_POST['sewadar_name'])&&!empty($_POST['sewadar_name'])){
 
 	if(isset($pathi_name2) && !empty($pathi_name2)) {
 		$pathi2 = "PA: ".$pathi_name2;
+		$leave_count += checkSewadarAvailability($db_handle, $sewa_date, $pathi_name2, $leave_count);
 	}
 	else{
 		$pathi2 = '';
@@ -154,6 +162,7 @@ if(isset($_POST['sewadar_name'])&&!empty($_POST['sewadar_name'])){
 
 	if(isset($pathi_name3) && !empty($pathi_name3)) {
 		$pathi3 = "PA: ".$pathi_name3;
+		$leave_count += checkSewadarAvailability($db_handle, $sewa_date, $pathi_name3, $leave_count);
 	}
 	else{
 		$pathi3 = '';
@@ -163,10 +172,9 @@ if(isset($_POST['sewadar_name'])&&!empty($_POST['sewadar_name'])){
 		$pathi_short3 = $pathi_sewadar["short_name"];
 	}
 
-
-
 	if(isset($ground_name1) && !empty($ground_name1)) {
 		$ground1 = "SS: ".$ground_name1;
+		$leave_count += checkSewadarAvailability($db_handle, $sewa_date, $ground_name1, $leave_count);
 	}
 	else{
 		$ground1 = '';
@@ -178,6 +186,7 @@ if(isset($_POST['sewadar_name'])&&!empty($_POST['sewadar_name'])){
 
 	if(isset($ground_name2) && !empty($ground_name2)) {
 		$ground2 = "SS: ".$ground_name2;
+		$leave_count += checkSewadarAvailability($db_handle, $sewa_date, $ground_name2, $leave_count);
 	}
 	else{
 		$ground2 = '';
@@ -189,6 +198,7 @@ if(isset($_POST['sewadar_name'])&&!empty($_POST['sewadar_name'])){
 
 	if(isset($ground_name3) && !empty($ground_name3)) {
 		$ground3 = "SS: ".$ground_name3;
+		$leave_count += checkSewadarAvailability($db_handle, $sewa_date, $ground_name3, $leave_count);
 	}
 	else{
 		$ground3 = '';
@@ -303,6 +313,23 @@ function explodeCheck($str, $del)
 		return TRIM(explode($del, $str));
 	} else {
 		return "";
+	}
+}
+
+function checkSewadarAvailability($db_handle, $date, $sewadar_name, $leave_count) {
+	if (!is_null($date) && !is_null($sewadar_name)) {
+		$sewadar_leave_list = $db_handle->runQuery("SELECT * FROM leaves WHERE sewadar_name = '".$sewadar_name."'");
+		foreach ($sewadar_leave_list as $sewadar_leave) {
+			if (($date >= $sewadar_leave['from_date']) && ($date <= $sewadar_leave['to_date'])) {
+				$leave_count++;
+			}
+		}
+		if ($leave_count > 0) {
+			echo "<script>
+				    alert('Sewadar on leave');
+				  </script>";
+		}
+		return $leave_count;
 	}
 }
 ?>

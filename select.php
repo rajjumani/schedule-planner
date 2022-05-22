@@ -90,7 +90,9 @@ include 'dbcontroller.php';
 <?php
 	$db_handle = new DBController();
 
-	if(isset($_POST['sewadar_name'])&&!empty($_POST['sewadar_name'])){ 
+	$cd_list = array('CD', 'CD/DVD')
+
+	if(isset($_POST['sewadar_name']) && !empty($_POST['sewadar_name'])){ 
 		$sewadar_name = $_POST['sewadar_name'];
 		$satsang_no = $_POST['satsang_no'];
 		$leave_count = 0;
@@ -109,7 +111,7 @@ include 'dbcontroller.php';
 				$db_short = $sewadar["type"].": ";
 			}
 			$com_name = $db_short.$sewadar_name;
-			if (strcmp($sewadar_name, "CD") != 0) {
+			if (!in_array($sewadar_name, $cd_list)) {
 				$sewa_list = $db_handle->runQuery("SELECT * FROM `".$master."` WHERE ".$db." = '".$com_name."' AND date = '".$formatted_date."'");
 				$count = 0;
 				foreach ($sewa_list as $alloted_sewa) {
@@ -183,7 +185,6 @@ include 'dbcontroller.php';
 				}
 				
 				if ($satsang_no == '') {
-					
 					$result = $db_handle->executeUpdate("UPDATE `".$master."` set ". $db . " = '".$db_short.$sewadar_name."' WHERE  centre_name = '".$centre_name."' AND day = '".$day."' AND col =".$col);
 				} else {
 					$satsang_no = "(".$satsang_no.")";
