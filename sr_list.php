@@ -139,7 +139,7 @@ function get_table()
 
 						if (strcmp($d, $dates[$col - 3]) == 0) {
 
-							$centre_name = $sk_name['centre_name'];
+							$centre_name = $sk_name['centre_name'] .' - '. $sk_name['baani'];
 						}
 					}
 
