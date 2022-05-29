@@ -129,7 +129,7 @@ function get_table()
 					$table_str .= '<td width =10% style="text-align: left;">'.explodeCheck($sk_names[$row - 2], ":").'</td>';
 				}
 				else if ($col == $col_count + 2) {
-					$table_str .= '<th width = '.$col_width.'>'.count($sk_array).'</th>';
+					$table_str .= '<td width = '.$col_width.'>'.count($sk_array).'</td>';
 				}
 				else {
 					foreach ($sk_array as $sk_name) {
@@ -138,7 +138,7 @@ function get_table()
 
 						if (strcmp($d, $dates[$col - 3]) == 0) {
 
-							$centre_name = $sk_name['centre_name'];
+							$centre_name = $sk_name['centre_name'] .' - '. $sk_name['baani'];
 						}
 					}
 
