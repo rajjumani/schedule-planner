@@ -90,7 +90,7 @@ include 'dbcontroller.php';
 <?php
 	$db_handle = new DBController();
 
-	$cd_list = array('CD', 'CD/DVD')
+	$cd_list = array('CD', 'CD/DVD');
 
 	if(isset($_POST['sewadar_name']) && !empty($_POST['sewadar_name'])){ 
 		$sewadar_name = $_POST['sewadar_name'];
