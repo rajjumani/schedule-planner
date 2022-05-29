@@ -88,7 +88,7 @@ function get_table()
 	$dates = array_keys($weekdays);
 
 	$row_count = sizeof($sk_names);
-	$col_count = sizeof($dates);
+	$col_count = sizeof($dates) + 1;
 	$col_width = (100/($col_count+3)).'%';
 
 	$table_str .= '<table border = 1 width= "100%" style = "margin = 0px;padding = 0px;height=100%">';
@@ -111,6 +111,9 @@ function get_table()
 				else if ($col == 2) {
 					$table_str .= '<th width =12%>SK</th>';
 				}
+				else if ($col == $col_count + 2) {
+					$table_str .= '<th>Total</th>';
+				}
 				else {
 					$table_str .= '<th width = '.$col_width.'>'.$dates[$col - 3].'</th>';
 				}	
@@ -124,6 +127,9 @@ function get_table()
 				}
 				else if ($col == 2) {
 					$table_str .= '<td width =10% style="text-align: left;">'.explodeCheck($sk_names[$row - 2], ":").'</td>';
+				}
+				else if ($col == $col_count + 2) {
+					$table_str .= '<th width = '.$col_width.'>'.count($sk_array).'</th>';
 				}
 				else {
 					foreach ($sk_array as $sk_name) {
