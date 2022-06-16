@@ -261,7 +261,7 @@ function get_remarks()
 	$db_handle = new DBController();
 	$table_str = '<table class = "alpha" border = 1 width="100%" style = "margin = 0px;padding = 0px;height=100%">';
 	$cell_value = "";
-	for ($i=1; $i <= 10; $i++) { 
+	for ($i=1; $i <= 14; $i++) { 
 		$table_str .= '<tr>';
 		for ($j=1; $j <= 3; $j++) { 
 			$cell_value = "";
@@ -277,7 +277,7 @@ function get_remarks()
 			}
 			
 			if ($i == 1 && $j == 1) {
-				$table_str .= '<th class = "omega" rowspan = 10 width = 20% style="text-align: center; font-family:arial;">'."REMARKS".'</th>';
+				$table_str .= '<th class = "omega" rowspan = 14 width = 20% style="text-align: center; font-family:arial;">'."REMARKS".'</th>';
 				/*$table_str .= '<td width = 30% style="font-family:arial;" contenteditable="true" onBlur="saveToDatabase(this,40'.$i.', 40'.$j.', ';
 				$table_str .= "'".$m."', ''";
 				$table_str .= ")";
