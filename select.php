@@ -90,7 +90,7 @@ include 'dbcontroller.php';
 <?php
 	$db_handle = new DBController();
 
-	$cd_list = array('CD', 'CD/DVD', 'Huzur Maharaj\'s Audio satsang', 'Huzur Maharaj\'s  Video satsang');
+	$cd_list = array('CD', 'CD/DVD', 'Huzur Maharaj Audio Satsang', 'Huzur Maharaj Video Satsang');
 
 	if(isset($_POST['sewadar_name']) && !empty($_POST['sewadar_name'])){ 
 		$sewadar_name = $_POST['sewadar_name'];
@@ -257,7 +257,7 @@ function explodeCheck($str, $del)
 		  source: function(query, result)
 		  {
 		   $.ajax({
-		    url:"fetch.php",
+		    url:"fetch_sewadar_baani.php",
 		    method:"POST",
 		    data:{query:query},
 		    dataType:"json",

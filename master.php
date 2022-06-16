@@ -290,7 +290,7 @@ function get_remarks()
 				$table_str .= '<th class = "omega" width = 20% style="text-align: center; font-family:arial;">'."IMP. NOTE:".'</th>';
 			} 
 			elseif ($i == 2 && $j == 3) {
-				$table_str .= '<td rowspan  = 9 style="font-family:arial;" contenteditable="true" onBlur="saveNotes(this,'.$i.', '.$j.', ';
+				$table_str .= '<td rowspan = 13 style="font-family:arial;" contenteditable="true" onBlur="saveNotes(this,'.$i.', '.$j.', ';
 				$table_str .= "'".$m."', ''";
 				$table_str .= ")";
 				$table_str .= '" onClick="showEdit(this)">'.$cell_value.'</td>';

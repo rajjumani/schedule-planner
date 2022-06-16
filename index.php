@@ -77,6 +77,11 @@ include 'commonhead.php';
 						<i class="ace-icon fa fa-plus-square-o bigger-230"></i>
 						Sewadar
 					</a>
+
+					<a href="add_baani.php" class="btn btn-app btn-success">
+						<i class="ace-icon fa fa-plus-square-o bigger-230"></i>
+						Baani
+					</a>
 			</div>
 
 			<div class="col-xs-12">
@@ -91,6 +96,11 @@ include 'commonhead.php';
 					<a href="edit_sewadar.php" class="btn btn-app btn-success">
 						<i class="ace-icon fa fa-pencil-square-o bigger-230"></i>
 						Sewadar
+					</a>
+
+					<a href="edit_baani.php" class="btn btn-app btn-success">
+						<i class="ace-icon fa fa-pencil-square-o bigger-230"></i>
+						Baani
 					</a>
 
 					<!--<a href="edit_master.php" class="btn btn-app btn-success">
