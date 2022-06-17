@@ -142,6 +142,8 @@ include 'dbcontroller.php';
 						$count--;
 					} 
 				} 
+			} else {
+				$com_name = $sewadar_name;
 			}
 			if($count > 0){
 				$sk_result = $db_handle->runQuery("SELECT * FROM `".$master."` WHERE centre_name = '".$centre_name."' AND date = '".$formatted_date."'");
