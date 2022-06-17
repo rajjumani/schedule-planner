@@ -58,7 +58,26 @@ include 'dbcontroller.php';
 							<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><?php echo $sewadar_type;?>: </label>
 
 							<div class="col-sm-9">
-								<input type="text" name="sewadar_name" id="sewadar_name" class="col-ms-2" autocomplete="off" />
+								<?php 
+									if (strcmp($sewadar_type, "Baani") == 0) {
+										$sewa_list_for_baani = $db_handle->runQuery("SELECT * FROM `".$master."` WHERE centre_name = '".$centre_name."' AND date = '".$formatted_date."'");
+										$baani_sewadar = '';
+										foreach ($sewa_list_for_baani as $baani_sewa_data) {
+											$baani_sewadar = $baani_sewa_data["sk_sr"];
+										}
+										$sewadar_for_baani = trim(explode(":",$baani_sewadar)[1]);
+										$baani_list = $db_handle->executeUpdate("SELECT * FROM baani WHERE sewadar_name = '".$sewadar_for_baani."'");
+										$sewa_select = '<input type="text" class="col-ms-2" name="sewadar_name"  list="sewadar_name" autocomplete="off">';
+										$sewa_select .= '<datalist id="sewadar_name">';	
+										foreach ($baani_list as $sewadar_baani) {
+											$sewa_select .= '<option value="'.$sewadar_baani["baani_name"].'"></option>';
+										}
+										$sewa_select .= "</datalist>";
+									} else {
+										$sewa_select = '<input type="text" name="sewadar_name" id="sewadar_name" class="col-ms-2" autocomplete="off" />';
+									}
+									echo $sewa_select;
+								?>
 							</div>
 						</div>
 
@@ -257,7 +276,7 @@ function explodeCheck($str, $del)
 		  source: function(query, result)
 		  {
 		   $.ajax({
-		    url:"fetch_sewadar_baani.php",
+		    url:"fetch.php",
 		    method:"POST",
 		    data:{query:query},
 		    dataType:"json",
