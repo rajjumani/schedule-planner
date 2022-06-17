@@ -143,6 +143,7 @@ include 'dbcontroller.php';
 					} 
 				} 
 			} else {
+				$db_short = "";
 				$com_name = $sewadar_name;
 			}
 			if($count > 0){
