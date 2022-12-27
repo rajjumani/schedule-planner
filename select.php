@@ -109,7 +109,7 @@ include 'dbcontroller.php';
 <?php
 	$db_handle = new DBController();
 
-	$cd_list = array('CD', 'CD/DVD', 'Huzur Maharaj Audio Satsang', 'Huzur Maharaj Video Satsang');
+	$cd_list = array('CD', 'CD/DVD', 'Huzur Maharaj Audio Satsang', 'Huzur Maharaj Video Satsang', 'Huzur Maharaj Audio/Video Satsang');
 
 	if(isset($_POST['sewadar_name']) && !empty($_POST['sewadar_name'])){ 
 		$sewadar_name = $_POST['sewadar_name'];
