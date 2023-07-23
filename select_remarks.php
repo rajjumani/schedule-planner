@@ -230,7 +230,7 @@ if(isset($_POST['sewadar_name'])&&!empty($_POST['sewadar_name'])){
 			$sr_no = $i;
 		} 
 		else {
-			$sr_no = $i +10;
+			$sr_no = $i +14;
 		}
 		$f_date1 = date('jS', strtotime($date1));
 		$remark = $sr_no.') '.$sewadar_name;
